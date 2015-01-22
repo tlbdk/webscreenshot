@@ -11,7 +11,7 @@ Number.prototype.pad = function(size) {
 /* Configuration */
 var pageWidth = 1920;
 var pageHeight = 1080;
-var waittime = 1 * 1000;
+var waittime = 3 * 1000;
 
 /* ULRs to load */
 var urls = [
@@ -35,6 +35,7 @@ var indexhtml =
   "	<script type=\"text/javascript\" src=\"js/jquery.min.js\"></script>\n" +
   "	<script type=\"text/javascript\" src=\"js/jquery.cycle2.min.js\"></script>\n" +
   "	<script type=\"text/javascript\" src=\"js/jquery.imagefit.js\"></script>\n" +
+  "	<script type=\"text/javascript\" src=\"js/live.js\"></script>\n" +
   "	<script type=\"text/javascript\">\n" +
   "		function fitting() {\n" +
   "			$('div.cycle-slideshow').imagefit({\n" +
