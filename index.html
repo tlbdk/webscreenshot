@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html lang="en" class="demo2">
+<head>
+	<meta charset="UTF-8">
+	<title>Slideshow</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cycle2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.imagefit.js"></script>
+	<script type="text/javascript">
+		function fitting() {
+			$('div.cycle-slideshow').imagefit({
+				mode : 'inside',
+				force: false,
+				halign : 'center',
+				valign : 'middle'
+			});
+		}
+
+		$(window).load(function(){
+			fitting();
+			$(window).resize(function(){  fitting();  });
+		});
+	</script>
+</head>
+
+<body class="demo2">
+	<div class="cycle-slideshow" data-cycle-slide-css='{ "position": "absolute" }'>
+		<img src="screenshot01.png" alt="">
+		<img src="screenshot02.png" alt="">
+		<img src="screenshot03.png" alt="">
+		<img src="screenshot04.png" alt="">
+	</div>
+</body>
+</html>t="">
+	</div>
+</body>
+</html>
