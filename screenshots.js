@@ -29,6 +29,7 @@ var indexhtml =
   "<!doctype html>\n" +
   "<html lang=\"en\" class=\"demo2\">\n" +
   "<head>\n" +
+  " <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
   "	<meta charset=\"UTF-8\">\n" +
   "	<title>Slideshow</title>\n" +
   "	<link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\" />\n" +
@@ -36,9 +37,11 @@ var indexhtml =
   "	<script type=\"text/javascript\" src=\"js/jquery.cycle2.min.js\"></script>\n" +
   "	<script type=\"text/javascript\" src=\"js/jquery.imagefit.js\"></script>\n" +
   "	<script type=\"text/javascript\" src=\"js/live.js\"></script>\n" +
+  "	<script type=\"text/javascript\" src=\"js/screenfull.min.js\"></script>\n" +
   "	<script type=\"text/javascript\">\n" +
+  "  var fullscreennotsupported = false;\n" +
   "		function fitting() {\n" +
-  "			$('div.cycle-slideshow').imagefit({\n" +
+  "		    $('div.cycle-slideshow').imagefit({\n" +
   "				mode : 'inside',\n" +
   "				force: false,\n" +
   "				halign : 'center',\n" +
@@ -46,15 +49,32 @@ var indexhtml =
   "			});\n" +
   "		}\n" +
   "\n" +
+  "    function launchFullscreen(element) {\n" +
+  "      screenfull.request();\n" + 
+  "    }\n" + 
+  "    $(document).on(screenfull.raw.fullscreenchange, function () {\n" +
+  "      if(screenfull.isFullscreen) {\n" +
+  "        $(\"#launchFullscreenButton\").hide();\n" +
+  "      } else {\n" +
+  "        $(\"#launchFullscreenButton\").show();\n" +
+  "      }\n" +
+  "    });\n" +
   "		$(window).load(function(){\n" +
-  "			fitting();\n" +
-  "			$(window).resize(function(){  fitting();  });\n" +
+  "	      fitting();\n" +
+  "		  $(window).resize(function(){  fitting();  });\n" +
+  "       if(fullscreennotsupported) {\n" +
+  "         $(\"#launchFullscreenButton\").hide();\n" +
+  "       }\n" +
   "		});\n" +
   "	</script>\n" +
+  "<!--[if lte IE9]> <script type=\"text/javascript\">fullscreennotsupported = true; </script> < ![endif]-->\n" +
   "</head>\n" +
   "\n" +
   "<body class=\"demo2\">\n" +
-  "	<div class=\"cycle-slideshow\" data-cycle-slide-css='{ \"position\": \"absolute\" }'>\n";
+  "  <div style=\"padding:20px;\">\n" +
+  "    <button onclick=\"launchFullscreen(document.documentElement);\" id=\"launchFullscreenButton\">Launch Fullscreen</button>\n" +
+  "  </div>\n" +
+  "	 <div class=\"cycle-slideshow\" data-cycle-slide-css='{ \"position\": \"absolute\" }'>\n";
 
 var urlcount = urls.length;
 renderPage(urls.shift(), urlcount - urls.length);
@@ -73,6 +93,7 @@ function renderPage(url, index) {
               "	</div>\n" +	
               "</body>\n" +
               "</html>";
+            fs.remove("index.html");
             fs.write("index.html", indexhtml, 'w');
             phantom.exit();
           }
