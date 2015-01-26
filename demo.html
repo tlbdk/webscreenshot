@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" class="demo2">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+    <title>Slideshow</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cycle2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cycle2.center.js"></script>
+    <script type="text/javascript" src="js/live.js"></script>
+    <script type="text/javascript" src="js/screenfull.min.js"></script>
+    <script type="text/javascript" src="js/webscreenshot.js"></script>
+    <script type="text/javascript">
+      var fullscreennotsupported = false;
+      <!--[if lte IE9]>fullscreennotsupported = true; <![endif]-->
+      
+      var slideshowslides = [
+        'screenshot01.png',
+        'screenshot02.png',
+        'screenshot03.png',
+        'screenshot04.png'
+      ];
+    </script>
+  </head>
+  <body>
+    <div id="menu">
+      <button onclick="screenfull.request();" id="launchFullscreenButton">Launch Fullscreen</button>
+    </div>
+    <div class="slideshow">
+    </div>
+  </body>
+</html>
